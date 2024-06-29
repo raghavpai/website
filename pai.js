@@ -8,7 +8,7 @@ const greeting = wasmModule.greet("World");
 console.log(greeting); // Should log: Hello, World!
 
 // Specify the broker's hostname and port directly
-const hostname = "mqtt-dashboard.com"; // Example broker hostname
+const hostname = "broker.hivemq.com"; // Example broker hostname
 const port = 8884; // Example WebSocket port
 
 // Create a client instance with a unique clientId
