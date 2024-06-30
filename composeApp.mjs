@@ -19,9 +19,10 @@ export default new Proxy(exports, {
     }
 });
 export const {
-    addNumbers,
-    greet,
     main,
+    connectionLost,
+    messageArrived,
+    connectComplete,
     _initialize,
     memory
 } = exports;

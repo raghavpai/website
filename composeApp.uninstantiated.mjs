@@ -389,7 +389,12 @@ export async function instantiate(imports={}, runInitializer=true) {
         'io.ktor.client.utils.makeJsCall' : (func, arg) => func.apply(null, arg),
         'io.ktor.client.utils.makeJsNew' : (ctor) => new ctor(),
         'io.ktor.client.utils.setObjectField' : (obj, name, value) => obj[name]=value,
-        'io.ktor.client.utils.toJsArrayImpl' : (x) => new Uint8Array(x)
+        'io.ktor.client.utils.toJsArrayImpl' : (x) => new Uint8Array(x),
+        'mqtt.connect_$external_fun' : () => connect(),
+        'mqtt.disconnect_$external_fun' : () => disconnect(),
+        'mqtt.publish_$external_fun' : (p0, p1) => publish(p0, p1),
+        'mqtt.subscribe_$external_fun' : (p0) => subscribe(p0),
+        'mqtt.unsubscribe_$external_fun' : (p0) => unsubscribe(p0)
     }
     
     // Placed here to give access to it from externals (js_code)
