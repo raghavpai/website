@@ -1,5 +1,3 @@
-import * as wasmModule from './composeApp.mjs';
-
 // Specify the broker's hostname and port directly
 const hostname = "broker.hivemq.com"; // Example broker hostname
 const port = 8884; // Example WebSocket port
@@ -12,41 +10,21 @@ const client = new Paho.MQTT.Client(hostname, port, clientId);
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 
-function connectMQTT() {
-    client.connect({ onSuccess: onConnect });
-}
-
-function disconnectMQTT() {
-    client.disconnect()
-}
-
-function publishMQTT(topic, message) {
-    const payload = new Paho.MQTT.Message(topic);
-    message.destinationName = message;
-    client.send(payload);
-}
-
-function subscribeMQTT(topic) {
-    client.subscribe(topic);
-}
-
-function unsubscribeMQTT(topic) {
-    client.unsubscribe(topic);
-}
+window.mqttClient = client
 
 function onConnect() {
   console.log("onConnect");
-  wasmModule.connectComplete();
+  window.wasmModule.connectComplete();
 }
 
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
     console.log("onConnectionLost: " + responseObject.errorMessage);
-    wasmModule.connectionLost(responseObject.errorMessage)
+    window.wasmModule.connectionLost(responseObject.errorMessage)
   }
 }
 
 function onMessageArrived(message) {
   console.log("onMessageArrived: " + message.payloadString);
-  wasmModule.messageArrived(message.destinationName, message.payloadString)
+  window.wasmModule.messageArrived(message.destinationName, message.payloadString)
 }

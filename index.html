@@ -7,30 +7,12 @@
     <link type="text/css" rel="stylesheet" href="styles.css">
     <script type="application/javascript" src="composeApp.js"></script>
     <script type="application/javascript" src="mqtt.js"></script>
-    <script type="module" src="mqttWeb.js"></script>
-    <script lang="javascript">
-
-        function connect() {
-            alert("Hello! I am an alert box!!");
-            //connectMQTT();
-        }
-
-        function disconnect() {
-            //disconnectMQTT();
-        }
-
-        function publish(topic, message) {
-            //publishMQTT(topic, message);
-        }
-
-        function subscribe(topic) {
-            //subscribeMQTT(topic);
-        }
-
-        function unsubscribe(topic) {
-            //unsubscribe(topic);
-        }
+    <script type="module">
+        import * as wasmModule from './composeApp.mjs';
+        window.wasmModule = wasmModule;
     </script>
+    <script type="application/javascript" src="mqttWeb.js"></script>
+    <script type="application/javascript" src="mqttKotlinBridge.js"></script>
 </head>
 <body>
 </body>
