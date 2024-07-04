@@ -14,17 +14,17 @@ window.mqttClient = client
 
 function onConnect() {
   console.log("onConnect");
-  window.wasmModule.connectComplete();
+  window.composeApp.mqtt.connectComplete();
 }
 
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
     console.log("onConnectionLost: " + responseObject.errorMessage);
-    window.wasmModule.connectionLost(responseObject.errorMessage)
+    window.composeApp.mqtt.connectionLost(responseObject.errorMessage)
   }
 }
 
 function onMessageArrived(message) {
   console.log("onMessageArrived: " + message.payloadString);
-  window.wasmModule.messageArrived(message.destinationName, message.payloadString)
+  window.composeApp.mqtt.messageArrived(message.destinationName, message.payloadString)
 }
