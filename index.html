@@ -14,10 +14,16 @@
     <script type="application/javascript" src="mqttWeb.js"></script>
     <script type="application/javascript" src="mqttKotlinBridge.js"></script>
     <script>
+        window.history.pushState({ page: 1 }, "Page 1", "?page=1");
         // Listen for the popstate event
         window.addEventListener('popstate', function(event) {
-            alert('Back button was pressed!');
-            // You can add your callback logic here
+                        if (confirm('Do you really want to go back?')) {
+                window.history.back(); // Proceed with back navigation
+            } else {
+                // Optionally, push the same state again to avoid navigating back
+                window.history.pushState({ page: 1 }, "Page 1", "?page=1");
+            }
+
         });
     </script>
 </head>
